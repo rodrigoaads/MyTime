@@ -11,4 +11,13 @@
     <string name="confirm">Confirmar</string>
     <string name="not_now">Agora não</string>
     <string name="invalid_range">Intervalo inválido</string>
+    <string name="register_name">Nome do registro</string>
+    <string name="register_url">Url</string>
+    <string name="register_url_tip">Caso você tenha a url de registro é possível cadastra-lá aqui, e através do icone direito na tela de listagem, será redirecionado para o navegador.</string>
+    <string name="register_title">Cadastre um novo registro</string>
+    <string name="edit_register_title">Editar registro</string>
+    <string name="register_button">Cadastrar</string>
+    <string name="edit_button">Editar</string>
+    <string name="remove_button">Remover</string>
+    <string name="register_navigation_title">Registro</string>
 </resources>

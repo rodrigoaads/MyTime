@@ -18,6 +18,7 @@ fun TimeOrganism(
     onTimeInChange: (Int, String) -> Unit,
     onTimeUntilChange: (Int, String) -> Unit,
     onClickAction: ((String) -> Unit)?,
+    onClickCard: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -44,7 +45,10 @@ fun TimeOrganism(
                     second = {
                         onClickAction?.invoke(model.actionUrl)
                     }
-                )
+                ),
+                onCLickCard = {
+                    onClickCard.invoke(model.id)
+                }
             )
         }
     }
@@ -77,7 +81,8 @@ private fun Preview() {
             ),
             onTimeInChange = { _, _ -> },
             onTimeUntilChange = { _, _ -> },
-            onClickAction = {}
+            onClickAction = {},
+            onClickCard = {}
         )
     }
 }

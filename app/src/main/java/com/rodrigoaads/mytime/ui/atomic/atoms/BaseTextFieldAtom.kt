@@ -1,7 +1,9 @@
 package com.rodrigoaads.mytime.ui.atomic.atoms
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -13,16 +15,19 @@ fun BaseTextFieldAtom(
     text: String,
     onTextChange: (String) -> Unit,
     modifier: Modifier = Modifier,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     singleLine: Boolean = false
 ) {
-    TextField(
-        modifier = modifier,
+    OutlinedTextField(
+        modifier = modifier
+            .fillMaxWidth(),
         value = text,
         onValueChange = onTextChange,
         label = {
             Text(text = label)
         },
-        singleLine = singleLine
+        singleLine = singleLine,
+        keyboardOptions = keyboardOptions
     )
 }
 

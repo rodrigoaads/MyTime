@@ -9,4 +9,5 @@ object Dimen {
     val smallPadding = 8.dp
     val mediumPadding = 12.dp
     val largePadding = 16.dp
+    val outlinedButtonBorder = 1.dp
 }

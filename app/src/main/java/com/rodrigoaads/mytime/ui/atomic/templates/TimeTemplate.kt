@@ -26,6 +26,7 @@ fun TimeTemplate(
     onTimeUntilChange: (Int, String) -> Unit,
     onClickAdd: () -> Unit,
     onClickAction: ((String) -> Unit)?,
+    onClickCard: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -49,7 +50,8 @@ fun TimeTemplate(
                 timeList = timeList,
                 onTimeInChange = onTimeInChange,
                 onTimeUntilChange = onTimeUntilChange,
-                onClickAction = onClickAction
+                onClickAction = onClickAction,
+                onClickCard = onClickCard
             )
         }
         AddButtonAtom(
@@ -92,7 +94,8 @@ private fun Preview() {
             onTimeInChange = { _, _ -> },
             onTimeUntilChange = { _, _ -> },
             onClickAdd = {},
-            onClickAction = {}
+            onClickAction = {},
+            onClickCard = {}
         )
     }
 }

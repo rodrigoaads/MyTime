@@ -32,12 +32,14 @@ fun TimeItemMolecule(
     onTimeInChange: (String) -> Unit,
     onTimeUntilChange: (String) -> Unit,
     onClickAction: Pair<Boolean, (() -> Unit)?>,
+    onCLickCard: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth(),
-        shape = RoundedCornerShape(Dimen.cardCornerRadius)
+        shape = RoundedCornerShape(Dimen.cardCornerRadius),
+        onClick = onCLickCard
     ) {
         Column(
             modifier = modifier
@@ -109,7 +111,8 @@ private fun Preview() {
             onClickAction = Pair(
                 first = true,
                 second = {}
-            )
+            ),
+            onCLickCard = {}
         )
     }
 }
