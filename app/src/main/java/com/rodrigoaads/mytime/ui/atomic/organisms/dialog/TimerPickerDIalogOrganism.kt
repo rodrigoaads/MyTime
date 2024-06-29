@@ -30,7 +30,8 @@ fun TimePickerDialogOrganism(
 
     val timePickerState = rememberTimePickerState(
         initialHour = selectedHour ?: cal.get(Calendar.HOUR_OF_DAY),
-        initialMinute = selectedMinute ?: cal.get(Calendar.MINUTE)
+        initialMinute = selectedMinute ?: cal.get(Calendar.MINUTE),
+        is24Hour = true
     )
 
     val formatter = remember { SimpleDateFormat("HH:mm", Locale.getDefault()) }

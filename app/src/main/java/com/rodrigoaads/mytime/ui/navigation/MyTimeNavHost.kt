@@ -1,6 +1,5 @@
 package com.rodrigoaads.mytime.ui.navigation
 
-import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -22,19 +21,7 @@ fun MyTimeNavHost(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = startDestination,
-        enterTransition = {
-            slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Start)
-        },
-        exitTransition = {
-            slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.End)
-        },
-        popEnterTransition = {
-            slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Start)
-        },
-        popExitTransition = {
-            slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.End)
-        }
+        startDestination = startDestination
     ) {
         composable(route = MyTimeDestination.Time.route) {
             TimePage(navController)

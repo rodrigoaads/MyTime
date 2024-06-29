@@ -1,11 +1,8 @@
 package com.rodrigoaads.mytime.ui.atomic.templates
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -17,7 +14,6 @@ import com.rodrigoaads.mytime.ui.atomic.organisms.RegisterOrganism
 import com.rodrigoaads.mytime.ui.theme.Dimen
 import com.rodrigoaads.mytime.ui.theme.MyTimeTheme
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun RegisterTemplate(
     name: String,
@@ -34,10 +30,7 @@ fun RegisterTemplate(
             .fillMaxSize()
             .padding(horizontal = Dimen.largePadding)
             .imePadding()
-            .then(
-                if (WindowInsets.isImeVisible) Modifier.verticalScroll(rememberScrollState())
-                    else Modifier
-            )
+            .verticalScroll(rememberScrollState())
     ) {
         RegisterOrganism(
             modifier = Modifier
