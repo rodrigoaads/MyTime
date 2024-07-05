@@ -6,7 +6,7 @@ import org.mongodb.kbson.ObjectId
 
 class TimeDbModel: RealmObject {
     @PrimaryKey
-    var id: ObjectId = ObjectId()
+    var _id: ObjectId = ObjectId()
     var name: String = ""
     var timeIn: String = ""
     var timeUntil: String = ""

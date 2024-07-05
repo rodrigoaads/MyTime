@@ -20,4 +20,6 @@
     <string name="edit_button">Editar</string>
     <string name="remove_button">Remover</string>
     <string name="register_navigation_title">Registro</string>
+    <string name="action_delete_text">Deseja relamente excluir esse registro?</string>
+    <string name="error_text">Algo deu errado, tente novamente</string>
 </resources>

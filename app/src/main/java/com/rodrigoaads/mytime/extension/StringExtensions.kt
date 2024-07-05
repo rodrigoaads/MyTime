@@ -1,4 +1,4 @@
-package com.rodrigoaads.mytime.extensions
+package com.rodrigoaads.mytime.extension
 
 fun String.getHourOrMinute(isHour: Boolean = true): Int? {
     return if (this.isNotEmpty()) {

@@ -1,6 +1,8 @@
 package com.rodrigoaads.mytime.di
 
 import com.rodrigoaads.data.AppDatabase
+import com.rodrigoaads.data.datasource.AppDataSource
+import com.rodrigoaads.data.datasource.AppDataSourceImpl
 import com.rodrigoaads.data.model.TimeDbModel
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
@@ -15,6 +17,7 @@ object DataModule {
     val dataModule = module {
         single<Realm> { provideRealm() }
         single { AppDatabase(get()) }
+        factory<AppDataSource> { AppDataSourceImpl(get()) }
     }
 }
 

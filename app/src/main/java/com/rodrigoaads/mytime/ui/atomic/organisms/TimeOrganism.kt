@@ -7,18 +7,18 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.rodrigoaads.mytime.domain.entity.TimeItemModel
+import com.rodrigoaads.mytime.domain.entity.ItemModel
 import com.rodrigoaads.mytime.ui.atomic.molecules.TimeItemMolecule
 import com.rodrigoaads.mytime.ui.theme.Dimen
 import com.rodrigoaads.mytime.ui.theme.MyTimeTheme
 
 @Composable
 fun TimeOrganism(
-    timeList: List<TimeItemModel>,
-    onTimeInChange: (Int, String) -> Unit,
-    onTimeUntilChange: (Int, String) -> Unit,
+    timeList: List<ItemModel>,
+    onTimeInChange: (String, String) -> Unit,
+    onTimeUntilChange: (String, String) -> Unit,
     onClickAction: ((String) -> Unit)?,
-    onClickCard: (Int) -> Unit,
+    onClickCard: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -60,8 +60,8 @@ private fun Preview() {
     MyTimeTheme {
         TimeOrganism(
             timeList = listOf(
-                TimeItemModel(
-                    id = 0,
+                ItemModel(
+                    id = "0",
                     name = "Teste 1",
                     calculatingTime = "1h",
                     timeIn = "14:00",
@@ -69,8 +69,8 @@ private fun Preview() {
                     showError = false,
                     actionUrl = ""
                 ),
-                TimeItemModel(
-                    id = 1,
+                ItemModel(
+                    id = "1",
                     name = "Teste 2",
                     calculatingTime = "2h",
                     timeIn = "17:00",

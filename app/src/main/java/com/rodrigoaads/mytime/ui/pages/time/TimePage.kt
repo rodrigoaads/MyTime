@@ -1,20 +1,26 @@
-package com.rodrigoaads.mytime.ui.pages
+package com.rodrigoaads.mytime.ui.pages.time
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.rodrigoaads.mytime.domain.entity.TimeItemModel
 import com.rodrigoaads.mytime.ui.atomic.molecules.AppBarMolecule
 import com.rodrigoaads.mytime.ui.atomic.templates.TimeTemplate
 import com.rodrigoaads.mytime.ui.navigation.MyTimeDestination
+import com.rodrigoaads.mytime.ui.pages.time.viewmodel.TimeViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun TimePage(
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    timeViewModel: TimeViewModel = koinViewModel(),
 ) {
+
+    val uiState by timeViewModel.uiState.collectAsState()
 
     Scaffold(
         topBar = {
@@ -28,35 +34,17 @@ fun TimePage(
                 .padding(paddingValue),
             date = "Qua, 30/05/2024",
             totalTime = "8h",
-            timeList = listOf(
-                TimeItemModel(
-                    id = 1,
-                    name = "Teste 1",
-                    calculatingTime = "1h",
-                    timeIn = "14:00",
-                    timeUntil = "15:00",
-                    showError = false,
-                    actionUrl = "abc"
-                ),
-                TimeItemModel(
-                    id = 2,
-                    name = "Teste 2",
-                    calculatingTime = "2h",
-                    timeIn = "17:00",
-                    timeUntil = "15:30",
-                    showError = true,
-                    actionUrl = "abc"
-                )
-            ),
+            timeList = uiState.list ?: listOf(),
             onTimeInChange = { _, _ -> },
             onTimeUntilChange = { _, _ -> },
             onClickAdd = {
-                navController.navigate(MyTimeDestination.Register(0).createRoute())
+                navController.navigate(MyTimeDestination.Register(null).createRoute())
             },
             onClickAction = {},
             onClickCard = { id ->
                 navController.navigate(MyTimeDestination.Register(id).createRoute())
-            }
+            },
+            isLoading = uiState.list == null
         )
     }
 }

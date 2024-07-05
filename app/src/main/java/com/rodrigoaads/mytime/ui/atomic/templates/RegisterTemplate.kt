@@ -21,6 +21,7 @@ fun RegisterTemplate(
     onNameChange: (String) -> Unit,
     onUrlChange: (String) -> Unit,
     isEdit: Boolean,
+    isLoading: Boolean,
     onClickRegisterOrEdit: () -> Unit,
     onClickRemove: () -> Unit,
     modifier: Modifier = Modifier
@@ -41,7 +42,8 @@ fun RegisterTemplate(
             onUrlChange = onUrlChange,
             isEdit = isEdit,
             onClickRegisterOrEdit = onClickRegisterOrEdit,
-            onClickRemove = onClickRemove
+            onClickRemove = onClickRemove,
+            isLoading = isLoading
         )
     }
 }
@@ -57,7 +59,8 @@ private fun Preview() {
             onUrlChange = {},
             isEdit = false,
             onClickRegisterOrEdit = {},
-            onClickRemove = {}
+            onClickRemove = {},
+            isLoading = false
         )
     }
 }

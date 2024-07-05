@@ -7,7 +7,7 @@ sealed class MyTimeDestination(val route: String) {
         override fun createRoute() = route
     }
 
-    data class Register(val id: Int = 0) : MyTimeDestination("REGISTER_PAGE") {
+    data class Register(val id: String? = null) : MyTimeDestination("REGISTER_PAGE") {
         override fun createRoute() = "$route/$id"
     }
 }

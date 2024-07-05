@@ -10,4 +10,7 @@ object Dimen {
     val mediumPadding = 12.dp
     val largePadding = 16.dp
     val outlinedButtonBorder = 1.dp
+    val buttonLoadingSize = 24.dp
+    val buttonLoadingStrokeWidth = 2.dp
+    val loadingStrokeWidth = 4.dp
 }

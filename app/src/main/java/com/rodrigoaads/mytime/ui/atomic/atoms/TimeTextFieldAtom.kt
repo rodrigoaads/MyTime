@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.rodrigoaads.mytime.extensions.getHourOrMinute
+import com.rodrigoaads.mytime.extension.getHourOrMinute
 import com.rodrigoaads.mytime.ui.atomic.organisms.dialog.TimePickerDialogOrganism
 import com.rodrigoaads.mytime.ui.theme.Dimen
 import com.rodrigoaads.mytime.ui.theme.MyTimeTheme

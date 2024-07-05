@@ -8,8 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.rodrigoaads.mytime.ui.pages.RegisterPage
-import com.rodrigoaads.mytime.ui.pages.TimePage
+import com.rodrigoaads.mytime.ui.pages.register.RegisterPage
+import com.rodrigoaads.mytime.ui.pages.time.TimePage
 
 @Composable
 fun MyTimeNavHost(
@@ -29,12 +29,16 @@ fun MyTimeNavHost(
         composable(
             route = "${MyTimeDestination.Register().route}/{id}",
             arguments = listOf(
-                navArgument("id") { type = NavType.IntType }
+                navArgument("id") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = null
+                }
             )
         ) { navBackStackEntry ->
             RegisterPage(
                 navController = navController,
-                id = navBackStackEntry.arguments?.getInt("id") ?: 0
+                id = navBackStackEntry.arguments?.getString("id") ?: ""
             )
         }
     }

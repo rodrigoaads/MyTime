@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -16,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rodrigoaads.mytime.R
 import com.rodrigoaads.mytime.ui.atomic.atoms.BaseTextAtom
+import com.rodrigoaads.mytime.ui.atomic.atoms.LoadingAtom
 import com.rodrigoaads.mytime.ui.atomic.molecules.RegisterTextFieldsMolecule
 import com.rodrigoaads.mytime.ui.theme.Dimen
 import com.rodrigoaads.mytime.ui.theme.MyTimeTheme
@@ -27,6 +29,7 @@ fun RegisterOrganism(
     onNameChange: (String) -> Unit,
     onUrlChange: (String) -> Unit,
     isEdit: Boolean,
+    isLoading: Boolean,
     onClickRegisterOrEdit: () -> Unit,
     onClickRemove: () -> Unit,
     modifier: Modifier = Modifier
@@ -58,16 +61,25 @@ fun RegisterOrganism(
         Button(
             modifier = Modifier
                 .fillMaxWidth(),
-            onClick = onClickRegisterOrEdit
+            onClick = onClickRegisterOrEdit,
+            enabled = !isLoading
         ) {
-            Text(
-                text = stringResource(
-                    id = if (isEdit) R.string.edit_button
-                        else R.string.register_button
+            if (isLoading) {
+                LoadingAtom(
+                    modifier = Modifier
+                        .size(Dimen.buttonLoadingSize),
+                    strokeWidth = Dimen.buttonLoadingStrokeWidth
                 )
-            )
+            } else {
+                Text(
+                    text = stringResource(
+                        id = if (isEdit) R.string.edit_button
+                        else R.string.register_button
+                    )
+                )
+            }
         }
-        if (isEdit) {
+        if (isEdit && !isLoading) {
             OutlinedButton(
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -99,7 +111,8 @@ private fun Preview() {
             onUrlChange = {},
             isEdit = false,
             onClickRegisterOrEdit = {},
-            onClickRemove = {}
+            onClickRemove = {},
+            isLoading = true
         )
     }
 }
@@ -115,7 +128,8 @@ private fun PreviewWithRemove() {
             onUrlChange = {},
             isEdit = true,
             onClickRegisterOrEdit = {},
-            onClickRemove = {}
+            onClickRemove = {},
+            isLoading = false
         )
     }
 }

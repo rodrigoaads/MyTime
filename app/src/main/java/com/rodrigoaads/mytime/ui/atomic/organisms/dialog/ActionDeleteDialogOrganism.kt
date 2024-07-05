@@ -18,7 +18,7 @@ import com.rodrigoaads.mytime.R
 import com.rodrigoaads.mytime.ui.theme.MyTimeTheme
 
 @Composable
-fun ActionRemoveDialogOrganism(
+fun ActionDeleteDialogOrganism(
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
     dialogText: String,
@@ -68,7 +68,7 @@ fun ActionRemoveDialogOrganism(
 @Composable
 private fun Preview() {
     MyTimeTheme {
-        ActionRemoveDialogOrganism(
+        ActionDeleteDialogOrganism(
             onDismissRequest = {},
             onConfirmation = {},
             dialogText = "Deseja realmente sair?"
@@ -80,7 +80,7 @@ private fun Preview() {
 @Composable
 private fun PreviewWithDarkTheme() {
     MyTimeTheme(darkTheme = true) {
-        ActionRemoveDialogOrganism(
+        ActionDeleteDialogOrganism(
             onDismissRequest = {},
             onConfirmation = {},
             dialogText = "Deseja realmente sair?"
