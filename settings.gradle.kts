@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyTime"
 include(":app")
- 
+include(":data")
