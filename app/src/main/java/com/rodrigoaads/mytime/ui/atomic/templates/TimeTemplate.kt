@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.rodrigoaads.mytime.domain.entity.ItemModel
 import com.rodrigoaads.mytime.ui.atomic.atoms.AddButtonAtom
 import com.rodrigoaads.mytime.ui.atomic.molecules.TimeListHeaderMolecule
+import com.rodrigoaads.mytime.ui.atomic.organisms.EmptyRegisterOrganism
 import com.rodrigoaads.mytime.ui.atomic.organisms.LoadingOrganism
 import com.rodrigoaads.mytime.ui.atomic.organisms.TimeOrganism
 import com.rodrigoaads.mytime.ui.theme.Dimen
@@ -41,7 +42,9 @@ fun TimeTemplate(
                 .fillMaxSize()
         ) {
             if (isLoading) {
-                LoadingOrganism()
+                LoadingOrganism(
+                    withText = true
+                )
             } else {
                 TimeListHeaderMolecule(
                     date = date,
@@ -51,13 +54,17 @@ fun TimeTemplate(
                     modifier = Modifier
                         .height(Dimen.smallPadding)
                 )
-                TimeOrganism(
-                    timeList = timeList,
-                    onTimeInChange = onTimeInChange,
-                    onTimeUntilChange = onTimeUntilChange,
-                    onClickAction = onClickAction,
-                    onClickCard = onClickCard
-                )
+                if (timeList.isNotEmpty()) {
+                    TimeOrganism(
+                        timeList = timeList,
+                        onTimeInChange = onTimeInChange,
+                        onTimeUntilChange = onTimeUntilChange,
+                        onClickAction = onClickAction,
+                        onClickCard = onClickCard
+                    )
+                } else {
+                    EmptyRegisterOrganism()
+                }
             }
         }
         AddButtonAtom(
