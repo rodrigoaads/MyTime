@@ -2,11 +2,15 @@ package com.rodrigoaads.mytime.di
 
 import com.rodrigoaads.mytime.data.AppRepository
 import com.rodrigoaads.mytime.data.AppRepositoryImpl
+import com.rodrigoaads.mytime.domain.usecase.ChangeTimeInUseCase
+import com.rodrigoaads.mytime.domain.usecase.ChangeTimeUntilUseCase
 import com.rodrigoaads.mytime.domain.usecase.CreateItemUseCase
 import com.rodrigoaads.mytime.domain.usecase.DeleteItemUseCase
 import com.rodrigoaads.mytime.domain.usecase.GetItemByIdUseCase
 import com.rodrigoaads.mytime.domain.usecase.GetListUseCase
 import com.rodrigoaads.mytime.domain.usecase.UpdateNameAndActionUseCase
+import com.rodrigoaads.mytime.domain.usecase.impl.ChangeTimeInUseCaseImpl
+import com.rodrigoaads.mytime.domain.usecase.impl.ChangeTimeUntilUseCaseImpl
 import com.rodrigoaads.mytime.domain.usecase.impl.CreateItemUseCaseImpl
 import com.rodrigoaads.mytime.domain.usecase.impl.DeleteItemUseCaseImpl
 import com.rodrigoaads.mytime.domain.usecase.impl.GetItemByIdUseCaseImpl
@@ -24,6 +28,8 @@ val appModule = module {
     factory<UpdateNameAndActionUseCase> { UpdateNameAndActionUseCaseImpl(get()) }
     factory<DeleteItemUseCase> { DeleteItemUseCaseImpl(get()) }
     factory<GetItemByIdUseCase> { GetItemByIdUseCaseImpl(get()) }
+    factory<ChangeTimeInUseCase> { ChangeTimeInUseCaseImpl(get()) }
+    factory<ChangeTimeUntilUseCase> { ChangeTimeUntilUseCaseImpl(get()) }
     viewModelOf(::RegisterViewModel)
     viewModelOf(::TimeViewModel)
 }

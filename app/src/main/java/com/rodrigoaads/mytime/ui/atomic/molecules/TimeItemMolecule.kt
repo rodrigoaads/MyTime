@@ -29,17 +29,26 @@ fun TimeItemMolecule(
     timeIn: String,
     timeUntil: String,
     showError: Boolean,
+    isChangeInTimeLoading: Boolean,
+    isChangeUntilTimeLoading: Boolean,
+    showInTimerPicker: Boolean,
+    showUntilTimerPicker: Boolean,
+    onDismissInTimePicker: () -> Unit,
+    onDismissUntilTimePicker: () -> Unit,
+    onShowInTimePicker: () -> Unit,
+    onShowUntilTimePicker: () -> Unit,
     onTimeInChange: (String) -> Unit,
     onTimeUntilChange: (String) -> Unit,
     onClickAction: Pair<Boolean, (() -> Unit)?>,
-    onCLickCard: () -> Unit,
+    onClickCard: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
     Card(
         modifier = modifier
             .fillMaxWidth(),
         shape = RoundedCornerShape(Dimen.cardCornerRadius),
-        onClick = onCLickCard
+        onClick = onClickCard
     ) {
         Column(
             modifier = modifier
@@ -53,6 +62,10 @@ fun TimeItemMolecule(
                     placeholder = stringResource(id = R.string.time_in),
                     onTextChange = onTimeInChange,
                     time = timeIn,
+                    isChangeTimeLoading = isChangeInTimeLoading,
+                    showTimerPicker = showInTimerPicker,
+                    onDismissTimePicker = onDismissInTimePicker,
+                    onShowTimePicker = onShowInTimePicker
                 )
                 BaseTextAtom(
                     modifier = Modifier
@@ -63,7 +76,11 @@ fun TimeItemMolecule(
                     placeholder = stringResource(id = R.string.time_until),
                     onTextChange = onTimeUntilChange,
                     time = timeUntil,
-                    enabled = timeIn.isNotEmpty()
+                    enabled = timeIn.isNotEmpty(),
+                    isChangeTimeLoading = isChangeUntilTimeLoading,
+                    showTimerPicker = showUntilTimerPicker,
+                    onDismissTimePicker = onDismissUntilTimePicker,
+                    onShowTimePicker = onShowUntilTimePicker
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 BaseTextAtom(
@@ -112,7 +129,15 @@ private fun Preview() {
                 first = true,
                 second = {}
             ),
-            onCLickCard = {}
+            onClickCard = {},
+            isChangeInTimeLoading = false,
+            isChangeUntilTimeLoading = false,
+            showInTimerPicker = false,
+            showUntilTimerPicker = false,
+            onDismissInTimePicker = {},
+            onDismissUntilTimePicker = {},
+            onShowInTimePicker = {},
+            onShowUntilTimePicker = {}
         )
     }
 }

@@ -30,6 +30,14 @@ fun TimeTemplate(
     onClickAction: ((String) -> Unit)?,
     onClickCard: (String) -> Unit,
     isLoading: Boolean,
+    isChangeInTimeLoading: Boolean,
+    isChangeUntilTimeLoading: Boolean,
+    showInTimerPicker: Pair<String, Boolean>,
+    showUntilTimerPicker: Pair<String, Boolean>,
+    onDismissInTimePicker: () -> Unit,
+    onDismissUntilTimePicker: () -> Unit,
+    onShowInTimePicker: (String) -> Unit,
+    onShowUntilTimePicker: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -60,7 +68,15 @@ fun TimeTemplate(
                         onTimeInChange = onTimeInChange,
                         onTimeUntilChange = onTimeUntilChange,
                         onClickAction = onClickAction,
-                        onClickCard = onClickCard
+                        onClickCard = onClickCard,
+                        isChangeInTimeLoading = isChangeInTimeLoading,
+                        isChangeUntilTimeLoading = isChangeUntilTimeLoading,
+                        showInTimerPicker = showInTimerPicker,
+                        showUntilTimerPicker = showUntilTimerPicker,
+                        onDismissInTimePicker = onDismissInTimePicker,
+                        onDismissUntilTimePicker = onDismissUntilTimePicker,
+                        onShowInTimePicker = onShowInTimePicker,
+                        onShowUntilTimePicker = onShowUntilTimePicker,
                     )
                 } else {
                     EmptyRegisterOrganism()
@@ -109,7 +125,21 @@ private fun Preview() {
             onClickAdd = {},
             onClickAction = {},
             onClickCard = {},
-            isLoading = false
+            isLoading = false,
+            isChangeInTimeLoading = false,
+            isChangeUntilTimeLoading = false,
+            showInTimerPicker = Pair(
+                first = "",
+                second = false
+            ),
+            showUntilTimerPicker = Pair(
+                first = "",
+                second = false
+            ),
+            onDismissInTimePicker = {},
+            onDismissUntilTimePicker = {},
+            onShowInTimePicker = {},
+            onShowUntilTimePicker = {}
         )
     }
 }

@@ -17,4 +17,12 @@ interface AppRepository {
         actionUrl: String
     ): ActionState<Nothing>
     suspend fun deleteItem(id: String): ActionState<Nothing>
+    suspend fun changeTimeIn(
+        id: String,
+        timeIn: String
+    ): ActionState<Nothing>
+    suspend fun changeTimeUntil(
+        id: String,
+        timeUntil: String
+    ): ActionState<Nothing>
 }

@@ -45,6 +45,20 @@ class AppDatabase(
         }
     }
 
+    suspend fun changeTimeIn(item: TimeModel) {
+        realm.write {
+            val dbItem = query<TimeDbModel>(QUERY_BY_ID, ObjectId(hexString = item.id)).find().first()
+            dbItem.timeIn = item.timeIn
+        }
+    }
+
+    suspend fun changeTimeUntil(item: TimeModel) {
+        realm.write {
+            val dbItem = query<TimeDbModel>(QUERY_BY_ID, ObjectId(hexString = item.id)).find().first()
+            dbItem.timeUntil = item.timeUntil
+        }
+    }
+
     companion object {
         private const val QUERY_BY_ID = "_id == $0"
     }

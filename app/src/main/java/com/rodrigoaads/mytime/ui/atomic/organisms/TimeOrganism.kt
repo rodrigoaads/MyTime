@@ -15,6 +15,14 @@ import com.rodrigoaads.mytime.ui.theme.MyTimeTheme
 @Composable
 fun TimeOrganism(
     timeList: List<ItemModel>,
+    isChangeInTimeLoading: Boolean,
+    isChangeUntilTimeLoading: Boolean,
+    showInTimerPicker: Pair<String, Boolean>,
+    showUntilTimerPicker: Pair<String, Boolean>,
+    onDismissInTimePicker: () -> Unit,
+    onDismissUntilTimePicker: () -> Unit,
+    onShowInTimePicker: (String) -> Unit,
+    onShowUntilTimePicker: (String) -> Unit,
     onTimeInChange: (String, String) -> Unit,
     onTimeUntilChange: (String, String) -> Unit,
     onClickAction: ((String) -> Unit)?,
@@ -46,8 +54,20 @@ fun TimeOrganism(
                         onClickAction?.invoke(model.actionUrl)
                     }
                 ),
-                onCLickCard = {
+                onClickCard = {
                     onClickCard.invoke(model.id)
+                },
+                isChangeInTimeLoading = isChangeInTimeLoading,
+                isChangeUntilTimeLoading = isChangeUntilTimeLoading,
+                showInTimerPicker = (showInTimerPicker.first == model.id) && showInTimerPicker.second,
+                showUntilTimerPicker = (showUntilTimerPicker.first == model.id) && showUntilTimerPicker.second,
+                onDismissInTimePicker = onDismissInTimePicker,
+                onDismissUntilTimePicker = onDismissUntilTimePicker,
+                onShowInTimePicker = {
+                    onShowInTimePicker.invoke(model.id)
+                },
+                onShowUntilTimePicker = {
+                    onShowUntilTimePicker.invoke(model.id)
                 }
             )
         }
@@ -82,7 +102,21 @@ private fun Preview() {
             onTimeInChange = { _, _ -> },
             onTimeUntilChange = { _, _ -> },
             onClickAction = {},
-            onClickCard = {}
+            onClickCard = {},
+            isChangeInTimeLoading = false,
+            isChangeUntilTimeLoading = false,
+            showInTimerPicker = Pair(
+                first = "",
+                second = false
+            ),
+            showUntilTimerPicker = Pair(
+                first = "",
+                second = false
+            ),
+            onDismissInTimePicker = {},
+            onDismissUntilTimePicker = {},
+            onShowInTimePicker = {},
+            onShowUntilTimePicker = {}
         )
     }
 }

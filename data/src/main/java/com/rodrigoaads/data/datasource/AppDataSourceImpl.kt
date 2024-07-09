@@ -58,4 +58,24 @@ class AppDataSourceImpl(
     )
 
     override suspend fun deleteItem(id: String) = appDatabase.deleteItem(ObjectId(hexString = id))
+
+    override suspend fun changeTimeIn(
+        id: String,
+        timeIn: String
+    ) = appDatabase.changeTimeIn(
+        TimeModel(
+            id = id,
+            timeIn = timeIn
+        )
+    )
+
+    override suspend fun changeTimeUntil(
+        id: String,
+        timeUntil: String
+    ) = appDatabase.changeTimeUntil(
+        TimeModel(
+            id = id,
+            timeUntil = timeUntil
+        )
+    )
 }

@@ -7,10 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.rodrigoaads.mytime.extension.getHourOrMinute
@@ -22,20 +19,21 @@ import com.rodrigoaads.mytime.ui.theme.MyTimeTheme
 fun TimeTextFieldAtom(
     placeholder: String,
     time: String,
+    showTimerPicker: Boolean,
+    isChangeTimeLoading: Boolean,
     onTextChange: (String) -> Unit,
+    onDismissTimePicker: () -> Unit,
+    onShowTimePicker: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
 
-    var showTimerPicker by remember {
-        mutableStateOf(false)
-    }
-
     TimePickerDialogOrganism(
         show = showTimerPicker,
-        onDismiss = { showTimerPicker = false },
+        onDismiss = onDismissTimePicker,
         selectedHour = time.getHourOrMinute(),
-        selectedMinute = time.getHourOrMinute(false)
+        selectedMinute = time.getHourOrMinute(false),
+        isChangeTimeLoading = isChangeTimeLoading
     ) { selectedTime ->
         onTextChange(selectedTime)
     }
@@ -56,7 +54,7 @@ fun TimeTextFieldAtom(
                 LaunchedEffect(source) {
                     source.interactions.collect {
                         if (it is PressInteraction.Release) {
-                            showTimerPicker = true
+                            onShowTimePicker.invoke()
                         }
                     }
                 }
@@ -71,7 +69,11 @@ private fun Preview() {
         TimeTextFieldAtom(
             placeholder = "Text here",
             onTextChange = {},
-            time = ""
+            time = "",
+            isChangeTimeLoading = false,
+            showTimerPicker = false,
+            onDismissTimePicker = {},
+            onShowTimePicker = {}
         )
     }
 }

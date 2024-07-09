@@ -80,4 +80,34 @@ class AppRepositoryImpl(
             ActionState.Error(e.message)
         }
     }
+
+    override suspend fun changeTimeIn(
+        id: String,
+        timeIn: String
+    ): ActionState<Nothing> {
+        return try {
+            appDataSource.changeTimeIn(
+                id = id,
+                timeIn = timeIn
+            )
+            ActionState.Success()
+        }catch (e: Exception) {
+            ActionState.Error(e.message)
+        }
+    }
+
+    override suspend fun changeTimeUntil(
+        id: String,
+        timeUntil: String
+    ): ActionState<Nothing> {
+        return try {
+            appDataSource.changeTimeUntil(
+                id = id,
+               timeUntil = timeUntil
+            )
+            ActionState.Success()
+        }catch (e: Exception) {
+            ActionState.Error(e.message)
+        }
+    }
 }

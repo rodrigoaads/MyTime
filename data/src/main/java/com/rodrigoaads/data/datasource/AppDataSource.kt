@@ -16,4 +16,12 @@ interface AppDataSource {
         actionUrl: String
     )
     suspend fun deleteItem(id: String)
+    suspend fun changeTimeIn(
+        id: String,
+        timeIn: String
+    )
+    suspend fun changeTimeUntil(
+        id: String,
+        timeUntil: String
+    )
 }
