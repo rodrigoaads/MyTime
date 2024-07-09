@@ -1,5 +1,6 @@
 package com.rodrigoaads.mytime.ui.atomic.molecules
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -100,7 +101,7 @@ fun TimeItemMolecule(
                     }
                 }
             }
-            if (showError) {
+            AnimatedVisibility(visible = showError) {
                 Spacer(
                     modifier = Modifier
                         .padding(top = Dimen.smallPadding)

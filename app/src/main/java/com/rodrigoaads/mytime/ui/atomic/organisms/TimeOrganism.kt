@@ -34,7 +34,12 @@ fun TimeOrganism(
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(Dimen.smallPadding),
     ) {
-        items(timeList) { model ->
+        items(
+            items = timeList,
+            key = { item ->
+                item.id
+            }
+        ) { model ->
             TimeItemMolecule(
                 text = model.name,
                 calculatingTime = if (model.showError) ""

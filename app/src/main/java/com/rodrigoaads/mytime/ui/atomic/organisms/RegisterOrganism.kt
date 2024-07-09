@@ -62,7 +62,7 @@ fun RegisterOrganism(
             modifier = Modifier
                 .fillMaxWidth(),
             onClick = onClickRegisterOrEdit,
-            enabled = !isLoading
+            enabled = !isLoading && name.isNotEmpty()
         ) {
             if (isLoading) {
                 LoadingAtom(
