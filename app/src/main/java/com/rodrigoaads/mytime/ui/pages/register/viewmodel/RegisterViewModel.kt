@@ -2,6 +2,7 @@ package com.rodrigoaads.mytime.ui.pages.register.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rodrigoaads.mytime.constants.StringConstants
 import com.rodrigoaads.mytime.domain.entity.ActionState
 import com.rodrigoaads.mytime.domain.usecase.CreateItemUseCase
 import com.rodrigoaads.mytime.domain.usecase.DeleteItemUseCase
@@ -64,7 +65,7 @@ class RegisterViewModel(
             ).let { actionState ->
                 setLoading(false)
                 when(actionState) {
-                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: ""))
+                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: StringConstants.EMPTY_STRING))
                     is ActionState.Success -> _state.emit(RegisterState.SuccessAction)
                 }
             }
@@ -81,7 +82,7 @@ class RegisterViewModel(
             ).let { actionState ->
                 setLoading(false)
                 when(actionState) {
-                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: ""))
+                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: StringConstants.EMPTY_STRING))
                     is ActionState.Success -> _state.emit(RegisterState.SuccessAction)
                 }
             }
@@ -94,13 +95,13 @@ class RegisterViewModel(
             getItemByIdUseCase.invoke(id).let { actionState ->
                 setLoading(false)
                 when(actionState) {
-                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: ""))
+                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: StringConstants.EMPTY_STRING))
                     is ActionState.Success -> {
                         _uiState.update { state ->
                             state.copy(
-                                id = actionState.item?.id ?: "",
-                                name = actionState.item?.name ?: "",
-                                actionUrl = actionState.item?.actionUrl ?: ""
+                                id = actionState.item?.id ?: StringConstants.EMPTY_STRING,
+                                name = actionState.item?.name ?: StringConstants.EMPTY_STRING,
+                                actionUrl = actionState.item?.actionUrl ?: StringConstants.EMPTY_STRING
                             )
                         }
                     }
@@ -115,7 +116,7 @@ class RegisterViewModel(
             deleteItemUseCase.invoke(uiState.value.id).let { actionState ->
                 setLoading(false)
                 when(actionState) {
-                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: ""))
+                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: StringConstants.EMPTY_STRING))
                     is ActionState.Success -> _state.emit(RegisterState.SuccessAction)
                 }
             }

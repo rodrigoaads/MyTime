@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines)
     implementation(libs.realm.base)
     implementation(libs.koin)
+    implementation(libs.kotlinx.datetime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

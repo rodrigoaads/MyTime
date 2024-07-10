@@ -25,4 +25,5 @@ interface AppRepository {
         id: String,
         timeUntil: String
     ): ActionState<Nothing>
+    fun getDate(): String
 }

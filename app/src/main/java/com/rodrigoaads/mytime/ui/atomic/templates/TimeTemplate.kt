@@ -10,12 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.rodrigoaads.mytime.domain.entity.ItemModel
 import com.rodrigoaads.mytime.ui.atomic.atoms.AddButtonAtom
 import com.rodrigoaads.mytime.ui.atomic.molecules.TimeListHeaderMolecule
 import com.rodrigoaads.mytime.ui.atomic.organisms.EmptyRegisterOrganism
 import com.rodrigoaads.mytime.ui.atomic.organisms.LoadingOrganism
 import com.rodrigoaads.mytime.ui.atomic.organisms.TimeOrganism
+import com.rodrigoaads.mytime.ui.pages.time.viewmodel.state.ItemUiModel
 import com.rodrigoaads.mytime.ui.theme.Dimen
 import com.rodrigoaads.mytime.ui.theme.MyTimeTheme
 
@@ -23,7 +23,7 @@ import com.rodrigoaads.mytime.ui.theme.MyTimeTheme
 fun TimeTemplate(
     date: String,
     totalTime: String,
-    timeList: List<ItemModel>,
+    timeList: List<ItemUiModel>,
     onTimeInChange: (String, String) -> Unit,
     onTimeUntilChange: (String, String) -> Unit,
     onClickAdd: () -> Unit,
@@ -101,7 +101,7 @@ private fun Preview() {
             date = "Qua, 30/05/2024",
             totalTime = "8h",
             timeList = listOf(
-                ItemModel(
+                ItemUiModel(
                     id = "0",
                     name = "Teste 1",
                     calculatingTime = "1h",
@@ -110,7 +110,7 @@ private fun Preview() {
                     showError = false,
                     actionUrl = "abc"
                 ),
-                ItemModel(
+                ItemUiModel(
                     id = "1",
                     name = "Teste 2",
                     calculatingTime = "2h",

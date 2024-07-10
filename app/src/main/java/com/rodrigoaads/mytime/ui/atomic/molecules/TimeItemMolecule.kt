@@ -101,11 +101,11 @@ fun TimeItemMolecule(
                     }
                 }
             }
-            AnimatedVisibility(visible = showError) {
-                Spacer(
-                    modifier = Modifier
-                        .padding(top = Dimen.smallPadding)
-                )
+            AnimatedVisibility(
+                modifier = Modifier
+                    .padding(top = Dimen.smallPadding),
+                visible = showError
+            ) {
                 ErrorTextAtom(
                     text = stringResource(id = R.string.invalid_range)
                 )

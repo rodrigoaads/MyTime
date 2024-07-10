@@ -10,15 +10,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TimePicker
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.rodrigoaads.mytime.R
 import com.rodrigoaads.mytime.ui.atomic.atoms.LoadingAtom
 import com.rodrigoaads.mytime.ui.theme.Dimen
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,15 +30,13 @@ fun TimePickerDialogOrganism(
     onTimeSelected: (String) -> Unit
 ) {
 
-    val cal = Calendar.getInstance()
+    val currentTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
     val timePickerState = rememberTimePickerState(
-        initialHour = selectedHour ?: cal.get(Calendar.HOUR_OF_DAY),
-        initialMinute = selectedMinute ?: cal.get(Calendar.MINUTE),
+        initialHour = selectedHour ?: currentTime.hour,
+        initialMinute = selectedMinute ?: currentTime.minute,
         is24Hour = true
     )
-
-    val formatter = remember { SimpleDateFormat("HH:mm", Locale.getDefault()) }
 
     if (show) {
         AlertDialog(
@@ -55,10 +52,7 @@ fun TimePickerDialogOrganism(
             confirmButton = {
                 Button(
                     onClick = {
-                        cal.set(Calendar.HOUR_OF_DAY, timePickerState.hour)
-                        cal.set(Calendar.MINUTE, timePickerState.minute)
-                        cal.isLenient = false
-                        onTimeSelected(formatter.format(cal.time))
+                        onTimeSelected("${timePickerState.hour}:${timePickerState.minute}")
                     },
                     enabled = !isChangeTimeLoading
                 ) {

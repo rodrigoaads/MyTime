@@ -7,14 +7,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.rodrigoaads.mytime.domain.entity.ItemModel
+import com.rodrigoaads.mytime.constants.StringConstants
 import com.rodrigoaads.mytime.ui.atomic.molecules.TimeItemMolecule
+import com.rodrigoaads.mytime.ui.pages.time.viewmodel.state.ItemUiModel
 import com.rodrigoaads.mytime.ui.theme.Dimen
 import com.rodrigoaads.mytime.ui.theme.MyTimeTheme
 
 @Composable
 fun TimeOrganism(
-    timeList: List<ItemModel>,
+    timeList: List<ItemUiModel>,
     isChangeInTimeLoading: Boolean,
     isChangeUntilTimeLoading: Boolean,
     showInTimerPicker: Pair<String, Boolean>,
@@ -42,7 +43,7 @@ fun TimeOrganism(
         ) { model ->
             TimeItemMolecule(
                 text = model.name,
-                calculatingTime = if (model.showError) ""
+                calculatingTime = if (model.showError) StringConstants.EMPTY_STRING
                     else model.calculatingTime,
                 timeIn = model.timeIn,
                 timeUntil = model.timeUntil,
@@ -85,7 +86,7 @@ private fun Preview() {
     MyTimeTheme {
         TimeOrganism(
             timeList = listOf(
-                ItemModel(
+                ItemUiModel(
                     id = "0",
                     name = "Teste 1",
                     calculatingTime = "1h",
@@ -94,7 +95,7 @@ private fun Preview() {
                     showError = false,
                     actionUrl = ""
                 ),
-                ItemModel(
+                ItemUiModel(
                     id = "1",
                     name = "Teste 2",
                     calculatingTime = "2h",

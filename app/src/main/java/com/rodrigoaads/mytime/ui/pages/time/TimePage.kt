@@ -54,8 +54,8 @@ fun TimePage(
         TimeTemplate(
             modifier = modifier
                 .padding(paddingValue),
-            date = "Qua, 30/05/2024",
-            totalTime = "8h",
+            date = uiState.date,
+            totalTime = uiState.totalTime,
             timeList = uiState.list ?: listOf(),
             onTimeInChange = { id, time ->
                 timeViewModel.changeTimeIn(
