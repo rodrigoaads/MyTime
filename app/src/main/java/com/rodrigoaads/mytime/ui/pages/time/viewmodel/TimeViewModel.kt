@@ -93,10 +93,10 @@ class TimeViewModel(
             changeTimeInUseCase.invoke(
                 id = id,
                 timeIn = timeIn
-            ).let { actionState ->
+            ).run {
                 setInTimeLoading(false)
-                when(actionState) {
-                    is ActionState.Error -> _state.emit(TimeState.Error(actionState.message ?: StringConstants.EMPTY_STRING))
+                when(this) {
+                    is ActionState.Error -> _state.emit(TimeState.Error)
                     else -> manageInTimePicker(show = false)
                 }
             }
@@ -112,10 +112,10 @@ class TimeViewModel(
             changeTimeUntilUseCase.invoke(
                 id = id,
                 timeUntil = timeUntil
-            ).let { actionState ->
+            ).run {
                 setUntilTimeLoading(false)
-                when(actionState) {
-                    is ActionState.Error -> _state.emit(TimeState.Error(actionState.message ?: StringConstants.EMPTY_STRING))
+                when(this) {
+                    is ActionState.Error -> _state.emit(TimeState.Error)
                     else -> manageUntilTimePicker(show = false)
                 }
             }

@@ -62,10 +62,10 @@ class RegisterViewModel(
             createItemUseCase.invoke(
                 name = uiState.value.name,
                 actionUrl = uiState.value.actionUrl
-            ).let { actionState ->
+            ).run {
                 setLoading(false)
-                when(actionState) {
-                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: StringConstants.EMPTY_STRING))
+                when(this) {
+                    is ActionState.Error -> _state.emit(RegisterState.Error)
                     is ActionState.Success -> _state.emit(RegisterState.SuccessAction)
                 }
             }
@@ -79,10 +79,10 @@ class RegisterViewModel(
                 id = uiState.value.id,
                 name = uiState.value.name,
                 actionUrl = uiState.value.actionUrl
-            ).let { actionState ->
+            ).run {
                 setLoading(false)
-                when(actionState) {
-                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: StringConstants.EMPTY_STRING))
+                when(this) {
+                    is ActionState.Error -> _state.emit(RegisterState.Error)
                     is ActionState.Success -> _state.emit(RegisterState.SuccessAction)
                 }
             }
@@ -92,16 +92,16 @@ class RegisterViewModel(
     fun getItemById(id: String) {
         setLoading(true)
         viewModelScope.launch {
-            getItemByIdUseCase.invoke(id).let { actionState ->
+            getItemByIdUseCase.invoke(id).run {
                 setLoading(false)
-                when(actionState) {
-                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: StringConstants.EMPTY_STRING))
+                when(this) {
+                    is ActionState.Error -> _state.emit(RegisterState.Error)
                     is ActionState.Success -> {
                         _uiState.update { state ->
                             state.copy(
-                                id = actionState.item?.id ?: StringConstants.EMPTY_STRING,
-                                name = actionState.item?.name ?: StringConstants.EMPTY_STRING,
-                                actionUrl = actionState.item?.actionUrl ?: StringConstants.EMPTY_STRING
+                                id = this.item?.id ?: StringConstants.EMPTY_STRING,
+                                name = this.item?.name ?: StringConstants.EMPTY_STRING,
+                                actionUrl = this.item?.actionUrl ?: StringConstants.EMPTY_STRING
                             )
                         }
                     }
@@ -113,10 +113,10 @@ class RegisterViewModel(
     fun deleteItem() {
         setLoading(true)
         viewModelScope.launch {
-            deleteItemUseCase.invoke(uiState.value.id).let { actionState ->
+            deleteItemUseCase.invoke(uiState.value.id).run {
                 setLoading(false)
-                when(actionState) {
-                    is ActionState.Error -> _state.emit(RegisterState.Error(actionState.message ?: StringConstants.EMPTY_STRING))
+                when(this) {
+                    is ActionState.Error -> _state.emit(RegisterState.Error)
                     is ActionState.Success -> _state.emit(RegisterState.SuccessAction)
                 }
             }
