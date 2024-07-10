@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
+import com.rodrigoaads.mytime.LocalActivity
 import com.rodrigoaads.mytime.R
 import com.rodrigoaads.mytime.ui.atomic.molecules.AppBarMolecule
 import com.rodrigoaads.mytime.ui.atomic.templates.TimeTemplate
@@ -29,6 +30,7 @@ fun TimePage(
     val uiState by timeViewModel.uiState.collectAsState()
 
     val context = LocalContext.current
+    val activity = LocalActivity.current
 
     LaunchedEffect(key1 = timeViewModel) {
         timeViewModel.state.collectLatest { state ->
@@ -72,7 +74,9 @@ fun TimePage(
             onClickAdd = {
                 navController.navigate(MyTimeDestination.Register(null).createRoute())
             },
-            onClickAction = {},
+            onClickAction = { url ->
+                activity.openUrl(url)
+            },
             onClickCard = { id ->
                 navController.navigate(MyTimeDestination.Register(id).createRoute())
             },

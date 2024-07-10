@@ -16,8 +16,11 @@ import com.rodrigoaads.mytime.R
 import com.rodrigoaads.mytime.ui.atomic.atoms.LoadingAtom
 import com.rodrigoaads.mytime.ui.theme.Dimen
 import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toJavaLocalDateTime
 import kotlinx.datetime.toLocalDateTime
+import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,7 +55,15 @@ fun TimePickerDialogOrganism(
             confirmButton = {
                 Button(
                     onClick = {
-                        onTimeSelected("${timePickerState.hour}:${timePickerState.minute}")
+                        val time = LocalDateTime(
+                            year = currentTime.year,
+                            monthNumber = currentTime.monthNumber,
+                            dayOfMonth = currentTime.dayOfMonth,
+                            hour = timePickerState.hour,
+                            minute = timePickerState.minute,
+                        )
+                        val formatter = DateTimeFormatter.ofPattern("HH:mm")
+                        onTimeSelected(formatter.format(time.toJavaLocalDateTime()))
                     },
                     enabled = !isChangeTimeLoading
                 ) {

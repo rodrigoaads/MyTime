@@ -3,11 +3,14 @@ package com.rodrigoaads.mytime.data
 import com.rodrigoaads.data.datasource.AppDataSource
 import com.rodrigoaads.mytime.domain.entity.ActionState
 import com.rodrigoaads.mytime.domain.entity.ItemModel
+import com.rodrigoaads.mytime.extension.capitalizeEachWord
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toJavaLocalDateTime
 import kotlinx.datetime.toLocalDateTime
+import java.time.format.DateTimeFormatter
 
 class AppRepositoryImpl(
     private val appDataSource: AppDataSource
@@ -115,18 +118,8 @@ class AppRepositoryImpl(
     }
 
     override fun getDate(): String {
-        val now = Clock.System.now()
-        val dateTime = now.toLocalDateTime(TimeZone.currentSystemDefault())
-
-        val formattedDate = buildString {
-            append(dateTime.dayOfWeek.name.substring(0,3).lowercase().replaceFirstChar { it.uppercase() })
-            append(", ")
-            append(dateTime.dayOfMonth.toString().padStart(2, '0'))
-            append(" ")
-            append(dateTime.month.name.substring(0, 3).lowercase().replaceFirstChar { it.uppercase() })
-            append(" ")
-            append(dateTime.year)
-        }
-        return formattedDate
+        val dateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+        val formatter = DateTimeFormatter.ofPattern("EEE dd MMM yyyy")
+        return formatter.format(dateTime.toJavaLocalDateTime()).capitalizeEachWord()
     }
 }

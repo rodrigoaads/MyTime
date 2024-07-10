@@ -1,9 +1,13 @@
 package com.rodrigoaads.mytime
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import com.rodrigoaads.mytime.ui.navigation.MyTimeNavHost
 import com.rodrigoaads.mytime.ui.theme.MyTimeTheme
 
@@ -13,8 +17,20 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyTimeTheme {
-                MyTimeNavHost()
+                CompositionLocalProvider(LocalActivity provides this) {
+                    MyTimeNavHost()
+                }
             }
         }
     }
+
+    fun openUrl(url: String) {
+        val webPage: Uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, webPage)
+        startActivity(intent)
+    }
+}
+
+val LocalActivity = staticCompositionLocalOf<MainActivity> {
+    error("CompositionLocal MainActivity not present")
 }

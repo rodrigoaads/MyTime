@@ -22,3 +22,8 @@ fun String.getInterval(): Int? {
         null
     }
 }
+
+fun String.capitalizeEachWord(): String {
+    val regex = "(\\b[a-z](?!\\s))".toRegex()
+    return this.replace(regex) { it.value.uppercase() }
+}
