@@ -22,6 +22,7 @@
     <string name="register_navigation_title">Registro</string>
     <string name="action_delete_text">Deseja relamente excluir esse registro?</string>
     <string name="error_text">Algo deu errado, tente novamente</string>
+    <string name="invalid_url_text">Url inválida.</string>
     <string name="loading_text">Buscando registros…</string>
     <string name="empty_register_list">Nenhum registro encontrado, adicione seu primeiro registro.</string>
 </resources>
