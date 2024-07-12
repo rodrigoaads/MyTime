@@ -14,6 +14,6 @@ Application developed to solve a personal problem, with the possibility of recor
 - [Datetime (Kotlin)](https://github.com/Kotlin/kotlinx-datetime)
 
 ### UI developed with compose, using the [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/) methodology.
-The application supports light and dark themes, in addition to the dynamic color option (available on Android 12+). Future updates should involve support with AM/PM.
+The application supports light and dark themes, in addition to the dynamic color option (available on Android 12+). Future updates should involve support with AM/PM, and calendar.
 
 Enjoy! :heart:
