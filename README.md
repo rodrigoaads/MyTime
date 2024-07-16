@@ -1,5 +1,7 @@
 # MyTime :hourglass:
-Application developed to solve a personal problem, with the possibility of recording the time spent on each job, with the time calculated at the end of the day.</p>
+Open source project, developed to solve a personal problem, with the possibility of recording the time spent on each job, with the time calculated at the end of the day.
+
+<p align="center"><a href='https://play.google.com/store/apps/details?id=com.rodrigoaads.mytime'><img width="220" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a></p>
 
 ![Banner](https://github.com/rodrigoaads/MyTime/assets/90936908/11cde14f-567d-457a-88fb-b0332c86c6aa)
 
